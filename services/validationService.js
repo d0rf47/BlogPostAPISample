@@ -6,20 +6,20 @@
  * @returns bool || error msg
  */
 exports.validateGetQueryParams = (queryParams) =>
-{        
+{            
     if(queryParams && Object.keys(queryParams).length === 0 && Object.getPrototypeOf(queryParams) === Object.prototype)
         return({msg: "Tags parameter is required"});
 
-    if(!queryParams.tags)
+    if(!queryParams.tags || queryParams.tags === '')
         return({msg: "Tags parameter is required"});
     
     if(queryParams.sortBy && queryParams.sortBy !== 'id' && queryParams.sortBy !== 'reads' && queryParams.sortBy !== 'likes'
-        && queryParams.sortBy !== 'popularity')
+        && queryParams.sortBy !== 'popularity' || queryParams.sortBy === '')
     {
         return({msg: "sortBy parameter is invalid"});
     }
 
-    if(queryParams.direction  && queryParams.direction !== 'asc' && queryParams.direction !== 'desc')
+    if(queryParams.direction  && queryParams.direction !== 'asc' && queryParams.direction !== 'desc' || queryParams.direction === '')
         return({msg: "direction parameter is invalid"});
 
     return true;

@@ -154,14 +154,11 @@ describe("Posts", () => {
       chai
         .request(API)
         .get("/api/posts?tags=history,science&sortBy=reads")
-        .end((err, res) => {                    
-          for(let i = 0;i < res.body.length; i++)
-          {
+        .end((err, res) => {                              
             expect(res.body).to.be.an('array').and.to.satisfy((posts) =>
             {
                 return posts.slice(1).every((p,i) => p.reads >= posts[i].reads); 
-            });
-          }
+            });          
           done();
         });
     });
@@ -171,15 +168,12 @@ describe("Posts", () => {
     it("each post should be sorted by popularity and ascending order", (done) => {
       chai
         .request(API)
-        .get("/api/posts?tags=history,science&sortBy=populariy")
-        .end((err, res) => {                    
-          for(let i = 0;i < res.body.length; i++)
-          {
+        .get("/api/posts?tags=history,science&sortBy=popularity")
+        .end((err, res) => {                              
             expect(res.body).to.be.an('array').and.to.satisfy((posts) =>
             {
                 return posts.slice(1).every((p,i) => p.popularity >= posts[i].popularity); 
-            });
-          }
+            });        
           done();
         });
     });
@@ -192,14 +186,11 @@ describe("Posts", () => {
       chai
         .request(API)
         .get("/api/posts?tags=history,science&sortBy=likes&direction=desc")
-        .end((err, res) => {                    
-          for(let i = 0;i < res.body.length; i++)
-          {
+        .end((err, res) => {                              
             expect(res.body).to.be.an('array').and.to.satisfy((posts) =>
             {
                 return posts.slice(1).every((p,i) => p.likes <= posts[i].likes); 
-            });
-          }
+            });          
           done();
         });
     });    
@@ -210,14 +201,11 @@ describe("Posts", () => {
       chai
         .request(API)
         .get("/api/posts?tags=history,science&sortBy=reads&direction=desc")
-        .end((err, res) => {                    
-          for(let i = 0;i < res.body.length; i++)
-          {
+        .end((err, res) => {                              
             expect(res.body).to.be.an('array').and.to.satisfy((posts) =>
             {
                 return posts.slice(1).every((p,i) => p.reads <= posts[i].reads); 
-            });
-          }
+            });          
           done();
         });
     });    
@@ -228,14 +216,11 @@ describe("Posts", () => {
       chai
         .request(API)
         .get("/api/posts?tags=history,science&sortBy=popularity&direction=desc")
-        .end((err, res) => {                    
-          for(let i = 0;i < res.body.length; i++)
-          {
+        .end((err, res) => {                              
             expect(res.body).to.be.an('array').and.to.satisfy((posts) =>
             {
                 return posts.slice(1).every((p,i) => p.popularity <= posts[i].popularity); 
-            });
-          }
+            });          
           done();
         });
     });    
@@ -246,14 +231,35 @@ describe("Posts", () => {
       chai
         .request(API)
         .get("/api/posts?tags=history,science&direction=desc")
-        .end((err, res) => {                    
-          for(let i = 0;i < res.body.length; i++)
-          {
+        .end((err, res) => {                              
             expect(res.body).to.be.an('array').and.to.satisfy((posts) =>
             {
                 return posts.slice(1).every((p,i) => p.id <= posts[i].id); 
-            });
-          }
+            });          
+          done();
+        });
+    });    
+  });
+
+  describe("/GET Posts multiple param SortBy=''", () => {
+    it("response should have status code 400", (done) => {
+      chai
+        .request(API)
+        .get("/api/posts?tags=history,science&sortBy=&direction=desc")
+        .end((err, res) => {       
+            res.should.have.status(400);                                   
+          done();
+        });
+    });    
+  });
+
+  describe("/GET Posts multiple param direction=''", () => {
+    it("response should have status code 400", (done) => {
+      chai
+        .request(API)
+        .get("/api/posts?tags=history,science&sortBy=likes&direction=")
+        .end((err, res) => {       
+            res.should.have.status(400);                                   
           done();
         });
     });    
