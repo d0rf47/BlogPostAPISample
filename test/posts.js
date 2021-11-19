@@ -8,11 +8,10 @@ let expect = chai.expect;
 const API = "http://localhost:5000";
 
 chai.use(chaiHttp);
-//Our parent block
+
+//Parent Block
 describe("Posts", () => {
-  /*
-   * Test the /GET route
-   */
+  
   describe("/GET Posts no query params", () => {
     it("it should respond status 400", (done) => {
       chai
@@ -178,8 +177,6 @@ describe("Posts", () => {
         });
     });
   });
-
-
 
   describe("/GET Posts multiple param", () => {
     it("each post should be sorted by likes and descending order", (done) => {
