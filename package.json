@@ -8,7 +8,7 @@
     "build": "npm i",
     "start": "node server.js",
     "devStart": "nodemon server.js",
-    "testProject" : "npm build && npm test"
+    "testProject" : "npm run build && npm test"
   },
   "author": "michael falconi",
   "license": "ISC",
