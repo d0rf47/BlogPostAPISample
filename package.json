@@ -5,8 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha --timeout 10000",
+    "build": "npm i",
     "start": "node server.js",
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server.js",
+    "testProject" : "npm build && npm test"
   },
   "author": "michael falconi",
   "license": "ISC",

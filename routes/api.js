@@ -31,8 +31,4 @@ router.get("/posts", async (req,res) =>
     }
 });
 
-
-
-
-
 module.exports = router;
