@@ -8,14 +8,15 @@
     "build": "npm i",
     "start": "node server.js",
     "devStart": "nodemon server.js",
-    "testProject" : "npm run build && npm test"
+    "testProject": "npm run build && npm test"
   },
   "author": "michael falconi",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "node-cache": "^5.1.2"
   },
   "devDependencies": {
     "chai": "^4.3.4",

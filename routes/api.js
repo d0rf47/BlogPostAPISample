@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express();
+const cacheService = require('../services/cacheService')
 const blogService = require('../services/blogService');
 const validationService = require('../services/validationService');
-
+const cache = new cacheService();
 
 router.get("/ping", (req,res) =>
 {
@@ -21,8 +22,12 @@ router.get("/posts", async (req,res) =>
     let tags = req.query.tags.split(',');
     try
     {
-        let resultSet = await blogService.fetchPostsByTags(tags)
-        resultSet = blogService.filterResults(resultSet, req.query);        
+        let resultSet = await cache.get(JSON.stringify(req.query) , async ()=>
+        {
+            let resultSet = await blogService.fetchPostsByTags(tags)
+            resultSet = blogService.filterResults(resultSet, req.query);                    
+            return resultSet
+        });        
         res.status(200).json(resultSet)
     }catch(error)
     {

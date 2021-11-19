@@ -3,7 +3,8 @@
 ## Details
 Built using NodeJS and Express.js  
 Automation Unit Testing using Mocha + Chai  
-PENDING server side caching -- not yet implemented
+ServerSide Caching: Simple implementation using node-cache 
+*Only works for single Instance, will not scale*
 ** Requirements **  
 NodeJS version 14+
 ### To Run
