@@ -4,7 +4,8 @@
 Built using NodeJS and Express.js  
 Automation Unit Testing using Mocha + Chai  
 PENDING server side caching -- not yet implemented
-
+** Requirements **  
+NodeJS version 14+
 ### To Run
   1. unzip files
   2. run ```npm run testProject``` will install, build, and run Karam + chai automation unit tests OR
